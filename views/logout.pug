@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/signin.css')
+    div.form-signin.text-center(style='background:#E4EBF8;border-radius:15px')
+        h1= title
+        p #{title}
+        a(href='/login')= 'Login here'

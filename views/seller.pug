@@ -1,0 +1,46 @@
+extends nav
+
+block main
+    script(type="text/javascript" src="/javascripts/upload.js")
+    if item
+        script.
+            setTimeout(function() {
+                put('#{JSON.stringify(item)}')
+            },100);
+    h1= title
+    p Welcome to #{title}
+    form(action='/seller/submit' method='post')
+        h2.text-center= 'Add Items'
+        table
+            tr
+                td= "Name"
+                td(colspan='2')
+                    input#name(type='text' name='name' placeholder='Name')
+            tr
+                td= 'Price'
+                td(colspan='2')
+                    input#price(type='text' name='price' placeholder='Price')
+            tr
+                td= 'Amount'
+                td(colspan='2')
+                    input#amount(type='text' name='amount' placeholder='Amount')
+            tr
+                td= 'Description'
+                td(colspan='2')
+                    textarea#description(name='description' placeholder='Description')
+            tr
+                td= 'Picture'
+                td(colspan='2')
+                    input#file(type='file' name='file' onchange='ajaxFileUpload("seller")')
+                    input#purl(type='hidden' name='purl')
+                    p#err(style='color:red')
+            tr
+                td
+                    img#img(src='' width='150' height='150' style='display:none')
+            tr
+                td(colspan='2')
+                    if item
+                        input(type='hidden' name='id' value=`${item._id}`)
+                    button.btn.btn-primary(type='submit')= 'Submit'
+                    br
+                    a(href='#' onclick='javascript:history.back(-1)')= 'Return'

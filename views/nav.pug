@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type="text/javascript" src="/javascripts/nav.js")
+    nav.navbar.navbar-expand-sm.navbar-light(role='navigation' style='background-color: #1a73e8;')
+        div.container-fluid
+            ul.navbar-nav
+                li.nav-item(style='color:white')= title
+            ul.nav.navbar-right
+                if user
+                    div.dropdown
+                        button.btn.btn-secondary.dpdmenu(data-toggle='dropdown' onclick='opt()')
+                            if user.purl!=''
+                                img(width='20' height='20' src='../'+`${user.purl}`)
+                            span= user.username
+                        div.dropdown-menu.dropdown-menu-right#text(role='menu' style='display:none')
+                            a.dropdown-item(href='/')= 'Main Page'
+                            if user.role=='user'
+                                a.dropdown-item(href='/users')= 'Shop Chart Page'
+                            if user.role=='seller'
+                                a.dropdown-item(href='/seller')= 'Items Add Page'
+                            a.dropdown-item(href='/logout')= 'Logout here'
+                else
+                    a(href='/login')
+                        button.btn.btn-secondary= 'Login'
+    block main

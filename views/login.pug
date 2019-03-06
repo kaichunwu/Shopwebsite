@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/signin.css')
+    form.form-signin.text-center(action='/login' method='post' style='background:#E4EBF8;border-radius:15px')
+        h1.font-weight-normal= title
+        table(style='position:relative;left:20%')
+            tr
+            td= 'Username'
+            td(colspan='2')
+                input#username.form-control(type='text' name='username' placeholder='Username')
+            tr
+            td= 'Password'
+            td(colspan='2')
+                input#password.form-control(type='password' name='password' placeholder='Password')
+            tr
+            td(colspan='3')
+                button.btn.btn-primary(type='submit')= 'LOG IN'
+            br
+        span.mt-5.mb-3.text-muted= "If you don't have account. Please "
+        br
+        a(href='/signup')= 'Create an account Here'
+        span.mt-5.mb-3.text-muted= ' or '
+        a(href='/')= 'Customer Login'
+        if err
+            p(style='color:red') #{err}

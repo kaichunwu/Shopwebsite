@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/signin.css')
+    script(type="text/javascript" src="/javascripts/upload.js")
+    form.form-signin.text-center(action='/signup/submit' method='post' style='background:#E4EBF8;border-radius:15px')
+        h1.h3.mb-3.font-weight-normal= title
+        table
+            tr
+            td= 'Username'
+            td
+                input#username.form-control(type='text' name='username' placeholder='Username')
+            tr
+            td= 'Password'
+            td
+                input#password.form-control(type='password' name='password' placeholder='Password')
+            tr
+            td= 'Role'
+            td
+                select#role.form-control(name='role')
+                    option(value='user')= 'User'
+                    option(value='seller')= 'Seller'
+                    option(value='admin')= 'Admin'
+                    option(value='supervisor')= 'Supervisor'
+            tr
+            td= 'BirthDate'
+            td
+                input#birth.form-control(name='birth' type='date' placeholder='BirthDate')
+            tr
+            td= 'Photo'
+            td
+                input#file.form-control(type='file' name='file' onchange='ajaxFileUpload("signup")')
+                input#purl(type='hidden' name='purl')
+            tr
+                p#err(style='color:red')
+            tr
+                img#img(src='' width='150' height='150' style='display:none')
+
+        button.btn.btn-primary(type='submit')= 'SUBMIT'
+        if errs
+            p(style='color:red')= `${errs}`
+        else
+            br
+        a(href='#' onclick='javascript:history.back(-1)')= 'Return'

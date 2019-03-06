@@ -1,0 +1,25 @@
+extends nav
+
+block main
+    h1= title
+    if chart
+        table
+            thead
+                tr
+                    th= 'items name'
+                    th= 'shop name'
+                    th= 'price'
+                    th= 'amount'
+            tbody
+                each val in chart.items
+                    tr
+                        td #{val.name}
+                        td #{val.username}
+                        td #{val.price}
+                        td #{val.amount}
+        div.text-center
+            p   Total Price: #{chart.price}
+            button.btn-primary.btn(onclick='submit("user","'+`${chart._id}`+'")') Pay
+    else
+        p= 'No Items in Shop Chart'
+

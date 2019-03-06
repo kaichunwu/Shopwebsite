@@ -1,0 +1,15 @@
+extends nav
+
+block main
+  h1 Welcome
+  if items
+    each val in items
+      div(class='three' onclick='to("'+`${user.role}`+'","'+`${val._id}`+'")')
+        if val.purl!=''
+          img(width='100' height='100' src=`${val.purl}`)
+        p #{val.name}
+        p Price: #{val.price}
+        p Amount: #{val.amount}
+        p Description: #{val.description}
+    else
+      p No Items
